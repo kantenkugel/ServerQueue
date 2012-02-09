@@ -1,5 +1,5 @@
 name: ServerQueue
-version: 0.1.0
+version: 0.1.1
 description: This Plugin kicks nasty Members automaticly
 author: Kantenkugel
 
@@ -29,18 +29,12 @@ permissions:
     serverqueue.master:
         description: acts like a vip in the file
         default: op
-    serverqueue.cmd:
-        description: allows access to the commands. DUMMY-Perm
     serverqueue.showstatus:
         description: shows the status of the server
         default: op
-        children:
-            serverqueue.cmd: true
     serverqueue.reload:
         description: reloads the config-file
         default: op
-        children:
-            serverqueue.cmd: true
     serverqueue.nokick:
         description: prevents the addon from kicking a non-vip if a vip wants to join
         default: op
