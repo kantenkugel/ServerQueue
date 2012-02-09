@@ -1,0 +1,9 @@
+ServerQueue:
+    SlotsToReserve: 2
+    PermReserve: true
+    Kick:
+        VIP: true
+        Perm: false
+        Notice: true
+VIPs:
+    - Kantenkugel
