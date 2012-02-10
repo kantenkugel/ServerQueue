@@ -20,8 +20,7 @@ permissions:
     serverqueue.*:
         description: allows access to all of serverqueue's functions
         children:
-            serverqueue.cmd: true
-            serverqueue.showstatus: true
+            serverqueue.status: true
             serverqueue.reload: true
             serverqueue.nokick: true
             serverqueue.vip: true
@@ -29,7 +28,7 @@ permissions:
     serverqueue.master:
         description: acts like a vip in the file
         default: op
-    serverqueue.showstatus:
+    serverqueue.status:
         description: shows the status of the server
         default: op
     serverqueue.reload:
