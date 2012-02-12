@@ -1,5 +1,5 @@
-CraftBukkit Plugin: ServerQueue
-===============================
+CraftBukkit Plugin: ServerQueue v0.2.0
+======================================
 
 **by Kantenkugel**
 
@@ -16,16 +16,20 @@ Plugin is in the early test-phase
 * `/serverqueue` or `/sq` -- Shows aviable sub-commands.
 * `/sq status` -- Shows a status-string *(actual players, max players and slot-assignment)*.
 * `/sq reload` -- Reloads the Config File to apply all user-made changes.
+* `/sq addmaster Pl` or `/sq am Pl` -- Adds Pl to Master-VIPs
+* `/sq remmaster Pl` or `/sq rm Pl` -- Removes Pl from Master-VIPs
 
 **Note:** you can always use `/serverqueue` instead of `/sq`.
 
 ### Permissions:
 
+* `serverqueue.*`      -- grants every other permission.
 * `serverqueue.reload` -- allows access to the `/sq reload` command.
 * `serverqueue.status` -- allows access to the `/sq status` command.
 * `serverqueue.nokick` -- if a player has this permission, he will not be kicked by the plugin, if a VIP wants to join a full server.
 * `serverqueue.vip`    -- sets this player as a VIP.
 * `serverqueue.master` -- this player is handlet like a VIP in the config-file *(see config-section)*.
+* `serverqueue.setmaster` -- allows access to the `/sq addmaster` and `/sq remmaster` commands.
 
 ### Config-File
 
@@ -39,7 +43,7 @@ Plugin is in the early test-phase
             Perm: false
             Notice: true
     VIPs:
-        - Kantenkugel
+    - kantenkugel
 
 **Description:**
 
@@ -48,4 +52,4 @@ Plugin is in the early test-phase
 * `Kick->VIP` -- Wheather to kick or not to kick for VIPs from the config-file.
 * `Kick->Perm` -- Wheather to kick or not to kick for permission-VIPs.
 * `Kick->Notice` -- If a Player would be kicked for a VIP, first show the VIP a message telling him that another connect-attempt of him will kick a User. This will reset after 20 seconds.
-* `VIPs` -- A YAML-formatted list of players, which are *(master)*VIPs.
+* `VIPs` -- A YAML-formatted list of players, which are *(master)*VIPs. **Use only Lower-Case here!**

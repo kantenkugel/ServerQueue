@@ -60,19 +60,58 @@ public class ServerQueue extends JavaPlugin {
 				case "reload":															//reloads the config-file (function loadconfig())
 					if(sender != this.getServer().getConsoleSender() && !(sender.hasPermission("serverqueue.reload"))) return noperm((Player) sender);
 					this.logger.info("["+this.pdf.getName()+"] Reloading Config-File!");
-					if(sender != this.getServer().getConsoleSender()) sender.sendMessage("["+this.pdf.getName()+"] Reloading Config-File!");
+					if(sender != this.getServer().getConsoleSender()) sender.sendMessage(ChatColor.GREEN+"["+this.pdf.getName()+"] Reloading Config-File!");
 					loadconfigfile();
 					break;
 				case "status":															//prints the status-message to the player or console
 					if(sender != this.getServer().getConsoleSender() && !(sender.hasPermission("serverqueue.status"))) return noperm((Player) sender);
 					if(sender == this.getServer().getConsoleSender()) this.logger.info("["+this.pdf.getName()+"] Status: Players online: "+this.getServer().getOnlinePlayers().length+"/"+this.maxplayers+"("+(this.maxplayers - this.reservedslots)+"+"+this.reservedslots+")");
-					else sender.sendMessage("["+this.pdf.getName()+"] Status: Players online: "+this.getServer().getOnlinePlayers().length+"/"+this.maxplayers+"("+(this.maxplayers - this.reservedslots)+"+"+this.reservedslots+")");
+					else sender.sendMessage(ChatColor.GREEN+"["+this.pdf.getName()+"] Status: Players online: "+this.getServer().getOnlinePlayers().length+"/"+this.maxplayers+"("+(this.maxplayers - this.reservedslots)+"+"+this.reservedslots+")");
 					break;
 				default:
 					return false;
 				}
 				return true;
 				
+			} else if(args.length == 2) {
+				Player target;
+				switch(args[0]) {
+				case "addmaster":
+				case "am":
+					if((sender != this.getServer().getConsoleSender()) && !(sender.hasPermission("serverqueue.setmaster"))) return noperm((Player) sender);
+					target = this.getServer().getPlayer(args[1]);
+					if(target != null && !(this.vipplayers.contains(target.getName().toLowerCase()))) {
+						this.logger.info("["+this.pdf.getName()+"] Adding Player "+target.getName()+" to Master-VIPs");
+						if(sender instanceof Player) sender.sendMessage(ChatColor.GOLD+"Adding Player "+target.getName()+" to Master-VIPs");
+						this.vipplayers.add(target.getName().toLowerCase());
+						this.getConfig().set("VIPs", vipplayers);
+						this.saveConfig();
+					} else if(target != null) {
+						if(sender == this.getServer().getConsoleSender()) this.logger.info("["+this.pdf.getName()+"] Player "+target.getName()+" is already Master-VIP");
+						else sender.sendMessage(ChatColor.GREEN+"["+this.pdf.getName()+"] Player "+target.getName()+" is already Master-VIP");
+					} else {
+						if(sender == this.getServer().getConsoleSender()) this.logger.info("["+this.pdf.getName()+"] Player not found!");
+						else sender.sendMessage(ChatColor.RED+"["+this.pdf.getName()+"] Player not found");
+					}
+					break;
+				case "remmaster":
+				case "rm":
+					if((sender != this.getServer().getConsoleSender()) && !(sender.hasPermission("serverqueue.setmaster"))) return noperm((Player) sender);
+					if(this.vipplayers.contains(args[1].toLowerCase())) {
+						this.logger.info("["+this.pdf.getName()+"] Removing Player "+args[1]+" from Master-VIPs");
+						if(sender instanceof Player) sender.sendMessage(ChatColor.GOLD+"Removing Player "+args[1]+" from Master-VIPs");
+						this.vipplayers.remove((String) args[1].toLowerCase());
+						this.getConfig().set("VIPs", vipplayers);
+						this.saveConfig();
+					} else {
+						if(sender == this.getServer().getConsoleSender()) this.logger.info("["+this.pdf.getName()+"] Player "+args[1]+" is no Master-VIP");
+						else sender.sendMessage(ChatColor.RED+"["+this.pdf.getName()+"] Player"+args[1]+" is no Master-VIP");
+					}
+					break;
+				default:
+					return false;					
+				}
+				return true;
 			} else return false;
 			
 		} else return false;

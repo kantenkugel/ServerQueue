@@ -1,5 +1,5 @@
 name: ServerQueue
-version: 0.1.1
+version: 0.2.0
 description: This Plugin kicks nasty Members automaticly
 author: Kantenkugel
 
@@ -13,6 +13,10 @@ commands:
             /<command> - Prints the help.
             /<command> reload - Reloads the Config-File
             /<command> status - Displays the Status of the Playerslots
+            /<command> addmaster PLAYER - Adds PLAYER to Master-VIPs.
+            /<command> am PLAYER - shortcut for addmaster
+            /<command> remmaster PLAYER - Removes PLAYER from Master-VIPs
+            /<command> rm PLAYER - shortcut for remmaster
         aliases: sq
     
 
@@ -25,6 +29,10 @@ permissions:
             serverqueue.nokick: true
             serverqueue.vip: true
             serverqueue.master: true
+            serverqueue.setmaster: true
+    serverqueue.setmaster:
+        description: allows adding and removing of master-vips
+        default: op
     serverqueue.master:
         description: acts like a vip in the file
         default: op

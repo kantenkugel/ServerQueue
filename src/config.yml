@@ -6,4 +6,4 @@ ServerQueue:
         Perm: false
         Notice: true
 VIPs:
-    - Kantenkugel
+- kantenkugel
