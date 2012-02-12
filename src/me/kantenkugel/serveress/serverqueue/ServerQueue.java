@@ -54,7 +54,7 @@ public class ServerQueue extends JavaPlugin {
 	public boolean onCommand(CommandSender sender, Command cmd, String cmdlabel, String[] args) {
 		if(cmdlabel.equalsIgnoreCase("sq") || cmdlabel.equalsIgnoreCase("serverqueue")) {//just to be sure
 			//check if player is allowed to use commands
-			if(sender != this.getServer().getConsoleSender() && !(sender.hasPermission("serverqueue.reload") || sender.hasPermission("serverqueue.status"))) return noperm((Player) sender);
+			if(sender != this.getServer().getConsoleSender() && !(sender.hasPermission("serverqueue.reload") || sender.hasPermission("serverqueue.status") || sender.hasPermission("serverqueue.setmaster"))) return noperm((Player) sender);
 			if(args.length == 1) {
 				switch(args[0]) {														//switch between subcommands
 				case "reload":															//reloads the config-file (function loadconfig())
