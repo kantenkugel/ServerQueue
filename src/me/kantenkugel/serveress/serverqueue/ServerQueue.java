@@ -17,7 +17,7 @@ public class ServerQueue extends JavaPlugin {
 	//Defining Variables
 	int maxplayers, normalslots, reservedslots;
 	boolean reserveperm, kickperm, kickvip, kicknotice;
-	List<Object> vipplayers;															//List with the VIPs from the config
+	List<String> vipplayers;															//List with the VIPs from the config
 	HashMap<String, Long> joinhash = new HashMap<String, Long>();						//if Notify is enabled, this stores the time of last attempt
 	public final Logger logger = Logger.getLogger("Minecraft");
 	PluginDescriptionFile pdf;
@@ -48,7 +48,7 @@ public class ServerQueue extends JavaPlugin {
 		this.kickperm = this.getConfig().getBoolean("ServerQueue.Kick.Perm");			//kick vor vip-permission
 		this.kickvip = this.getConfig().getBoolean("ServerQueue.Kick.VIP");				//kick vor vips in the config
 		this.kicknotice = this.getConfig().getBoolean("ServerQueue.Kick.Notice");		//notice joining vips before kicking
-		this.vipplayers = this.getConfig().getList("VIPs");								//load the vips from the file
+		this.vipplayers = this.getConfig().getStringList("VIPs");								//load the vips from the file
 	}
 	
 	public boolean onCommand(CommandSender sender, Command cmd, String cmdlabel, String[] args) {
